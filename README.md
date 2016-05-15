@@ -7,6 +7,9 @@ Gross code but kind of fun. I will come back to this.
 
 ##Tested on Ubuntu 14.04 with OpenCV 3.0
 
+#If you don't feel like building and running it
+I attached sample outputs and inputs in the resources directory. I used the Falcon 9 image that SpaceX is using for their Twitter [profile](https://twitter.com/spacex)
+
 #Build steps
 ##Typical CMake build
 1. `mkdir build`
