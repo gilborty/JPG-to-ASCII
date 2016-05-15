@@ -32,5 +32,5 @@ Here is an example. I used gedit to view the image but I had to make two changes
 ##After those changes...
 
 1. `cd build`
-2. `gedit Output.txt`
+2. `gedit artwork/[FILENAME].txt`
 
