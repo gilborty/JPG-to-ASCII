@@ -1,10 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
-#include <opencv2/opencv.hpp>
-#include <opencv/highgui.h>
-
 #include "Converter.hpp"
 
 int main( int argc, char** argv )
