@@ -6,7 +6,7 @@ SET(CMAKE_CXX_FLAGS -std=c++11)
 find_package( OpenCV REQUIRED )
 
 SET( SRCS src/main.cpp
-          )
+          src/Converter.cpp)
       
 add_executable(JPG-to-ASCII ${SRCS})
 
