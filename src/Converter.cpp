@@ -10,6 +10,7 @@
     " .:-=+*#%@"
 */
 const std::string Converter::m_BRIGHTNESS_RAMP = " .:-=+*#%@";
+const std::string Converter::m_ARTWORK_DIR = "artwork/";
 
 
 Converter::Converter( const std::string inputImagePath )
@@ -22,6 +23,7 @@ Converter::Converter( const std::string inputImagePath )
         throw std::runtime_error( "No file path given. Aborting." );
     }
 
+    m_outputFilePath = getTimeStampedFileName( m_inputImageFilePath );
     m_outputFile.open( m_outputFilePath );
 }
 
@@ -35,12 +37,46 @@ Converter::Converter(const std::string inputImagePath, const std::string outputF
         throw std::runtime_error( "No file path given. Aborting." );
     }
 
+    m_outputFilePath = getTimeStampedFileName( m_inputImageFilePath );
     m_outputFile.open( m_outputFilePath );
 }
 
 Converter::~Converter()
 {
     m_outputFile.close();
+}
+
+std::string Converter::getFileName(const std::string& fileNameIn)
+{
+    //Remove directory
+    std::string fileNameWithoutDir = fileNameIn.substr( fileNameIn.find_last_of("/") + 1 );
+
+    //And then remove extension
+    size_t lastIndex = fileNameWithoutDir.find_last_of(".");
+    return fileNameWithoutDir.substr(0, lastIndex);
+}
+
+std::string Converter::getTimeStampedFileName(const std::string inputFileName)
+{
+   //Log file is ISO 8601 format. Sort of... (IMAGE_NAME-YYYY-MM-DDTHH-MM-SS)
+   auto now = std::chrono::system_clock::now();
+   auto tt = std::chrono::system_clock::to_time_t(now);
+
+   std::tm local_tm = *std::localtime(&tt);
+   std::string fileName = getFileName( inputFileName );
+
+   std::stringstream ss;
+   ss << m_ARTWORK_DIR;
+   ss << fileName << '-';
+   ss << local_tm.tm_year + 1900 << '-';
+   ss << local_tm.tm_mon + 1 << '-';
+   ss << local_tm.tm_mday << 'T';
+   ss << local_tm.tm_hour << '-';
+   ss << local_tm.tm_min << '-';
+   ss << local_tm.tm_sec << ".txt";
+
+   return ss.str();
+
 }
 
 float Converter::mapToRange(int valueToBeMapped, int lowInputRange = 0, int highInputRange = 256, int lowDestRange = 0, int highDestRange = m_BRIGHTNESS_RAMP.length())
