@@ -11,12 +11,8 @@
     Credit to: http://paulbourke.net/dataformats/asciiart/
     "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. "
     or, smaller but more convincing
-    "
+    " .:-=+*#%@"
 */
-
-std::string brightnessRamp( "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,^`'. " );
-std::string smallerBrightnessRamp( " .:-=+*#%@" );
-//std::string smallerBrightnessRamp( "@%#*+=-:. " );
 
 float map( int value, int a1, int a2, int b1, int b2 )
 {
